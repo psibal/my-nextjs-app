@@ -49,7 +49,10 @@ npm run db:seed
 npm run dev
 ```
 
-Visit: `http://localhost:3000` → Click "View Dashboard"
+Visit: `http://localhost:3000` to see your new **Dashboard Overview**!
+Manage your content via the navigation:
+- **Posts**: `http://localhost:3000/dashboard/posts`
+- **Products**: `http://localhost:3000/dashboard/products`
 
 ## Authentication Options
 

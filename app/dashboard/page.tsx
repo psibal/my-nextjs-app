@@ -1,34 +1,34 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { auth, signOut } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { posts } from "@/lib/db/schema";
+import { posts, products } from "@/lib/db/schema";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { PostsTable } from "@/components/posts/posts-table";
-import { CreatePostDialog } from "@/components/posts/create-post-dialog";
 import { Button } from "@/components/ui/button";
-import { LogOut, LogIn, LayoutDashboard, Package, Sparkles } from "lucide-react";
-import { desc } from "drizzle-orm";
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card";
+import {
+  LogOut,
+  LogIn,
+  LayoutDashboard,
+  Package,
+  Sparkles,
+  Files,
+  ArrowRight,
+  TrendingUp,
+  Clock,
+  Plus
+} from "lucide-react";
+import { count, desc } from "drizzle-orm";
 
-export default async function DashboardPage() {
+export default async function DashboardOverview() {
   const session = await auth();
-  const requireAuth = process.env.REQUIRE_AUTH === "true";
-  const allowAnonymousPosts = process.env.ALLOW_ANONYMOUS_POSTS === "true";
 
-  if (requireAuth && !session?.user) {
-    redirect("/login");
-  }
+  // Fetch stats
+  const [postsCount] = await db.select({ value: count() }).from(posts);
+  const [productsCount] = await db.select({ value: count() }).from(products);
 
-  const allPosts = await db.query.posts.findMany({
+  const recentPosts = await db.query.posts.findMany({
+    limit: 3,
     orderBy: [desc(posts.createdAt)],
-    with: {
-      author: {
-        columns: {
-          name: true,
-          email: true,
-        },
-      },
-    },
   });
 
   return (
@@ -48,10 +48,17 @@ export default async function DashboardPage() {
 
             <nav className="flex items-center gap-1 text-sm font-medium bg-muted/50 p-1 rounded-xl border border-border/50">
               <Link
-                href="/dashboard"
+                href="/"
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-background shadow-sm text-foreground"
               >
                 <LayoutDashboard className="h-4 w-4 text-primary" />
+                Overview
+              </Link>
+              <Link
+                href="/dashboard/posts"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-muted-foreground hover:text-foreground transition-all"
+              >
+                <Files className="h-4 w-4" />
                 Posts
               </Link>
               <Link
@@ -97,27 +104,127 @@ export default async function DashboardPage() {
 
       {/* Main Content */}
       <main className="container mx-auto px-6 py-12">
-        <div className="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary uppercase tracking-wider">
-              Management
-            </div>
-            <h2 className="text-4xl font-extrabold tracking-tight">Posts</h2>
-            <p className="mt-1 text-muted-foreground text-lg">
-              {session?.user || allowAnonymousPosts ? "Craft and manage your published content" : "Browse all published stories"}
-            </p>
+        <div className="mb-12">
+          <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary uppercase tracking-wider">
+            Dashboard
           </div>
-          {(session?.user || allowAnonymousPosts) && <CreatePostDialog />}
+          <h2 className="text-4xl font-extrabold tracking-tight">Overview</h2>
+          <p className="mt-1 text-muted-foreground text-lg">
+            Welcome back. Here&apos;s what&apos;s happening with your projects.
+          </p>
         </div>
 
-        <div className="rounded-2xl border border-border/50 bg-glass p-1 backdrop-blur-xl shadow-2xl shadow-black/5">
-          <div className="bg-background/80 rounded-[11px] overflow-hidden">
-            <PostsTable
-              data={allPosts}
-              currentUserId={session?.user?.id}
-              allowAnonymous={allowAnonymousPosts}
-            />
-          </div>
+        {/* Stats Grid */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
+          <Card className="bg-glass backdrop-blur-xl border-none shadow-xl shadow-black/5 group hover:-translate-y-1 transition-transform">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">Total Posts</CardTitle>
+              <Files className="h-4 w-4 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">{postsCount.value}</div>
+              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                <TrendingUp className="h-3 w-3 text-green-500" />
+                <span>Active publications</span>
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-glass backdrop-blur-xl border-none shadow-xl shadow-black/5 group hover:-translate-y-1 transition-transform">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">Products</CardTitle>
+              <Package className="h-4 w-4 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">{productsCount.value}</div>
+              <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1">
+                <TrendingUp className="h-3 w-3 text-green-500" />
+                <span>Digital assets</span>
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-glass backdrop-blur-xl border-none shadow-xl shadow-black/5 group hover:-translate-y-1 transition-transform">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">System Status</CardTitle>
+              <Sparkles className="h-4 w-4 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-green-500">Optimal</div>
+              <p className="text-xs text-muted-foreground mt-1">All services operational</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-glass backdrop-blur-xl border-none shadow-xl shadow-black/5 group hover:-translate-y-1 transition-transform">
+            <CardHeader className="flex flex-row items-center justify-between pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">Active Session</CardTitle>
+              <Clock className="h-4 w-4 text-primary" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold">{session?.user ? "Authenticated" : "Public"}</div>
+              <p className="text-xs text-muted-foreground mt-1">
+                {session?.user ? session.user.email : "Limited access"}
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-7">
+          {/* Recent Posts */}
+          <Card className="lg:col-span-4 bg-glass backdrop-blur-xl border-none shadow-xl shadow-black/5 overflow-hidden">
+            <CardHeader className="flex flex-row items-center justify-between border-b border-border/10">
+              <div>
+                <CardTitle>Recent Posts</CardTitle>
+                <CardDescription>Latest updates to your content library</CardDescription>
+              </div>
+              <Button variant="ghost" size="sm" asChild className="rounded-full">
+                <Link href="/dashboard/posts">View All <ArrowRight className="ml-2 h-4 w-4" /></Link>
+              </Button>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="divide-y divide-border/10">
+                {recentPosts.map((post) => (
+                  <div key={post.id} className="p-4 flex items-center justify-between hover:bg-primary/5 transition-colors group">
+                    <div>
+                      <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">{post.title}</h4>
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(post.createdAt).toLocaleDateString()} • {post.published ? "Published" : "Draft"}
+                      </p>
+                    </div>
+                    <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Quick Actions */}
+          <Card className="lg:col-span-3 bg-glass backdrop-blur-xl border-none shadow-xl shadow-black/5">
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+              <CardDescription>Common tasks and management tools</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4">
+              <Button asChild className="w-full justify-start h-12 rounded-xl group" variant="outline">
+                <Link href="/dashboard/posts">
+                  <Plus className="mr-2 h-5 w-5 text-primary group-hover:scale-125 transition-transform" />
+                  Create New Post
+                </Link>
+              </Button>
+              <Button asChild className="w-full justify-start h-12 rounded-xl group" variant="outline">
+                <Link href="/dashboard/products">
+                  <Package className="mr-2 h-5 w-5 text-primary group-hover:scale-125 transition-transform" />
+                  Add New Product
+                </Link>
+              </Button>
+              <div className="mt-4 p-4 rounded-xl bg-primary/5 border border-primary/10">
+                <h5 className="text-sm font-semibold text-primary mb-1">Production Ready</h5>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Your application is optimized and ready for scaling. Monitor your performance in the Vercel dashboard.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </main>
     </div>

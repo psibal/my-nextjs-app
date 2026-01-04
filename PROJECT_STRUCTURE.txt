@@ -26,6 +26,8 @@
 │   │   │   ├── error.tsx
 │   │   │   ├── loading.tsx
 │   │   │   ├── page.tsx
+│   │   │   ├── posts/
+│   │   │   │   ├── page.tsx
 │   │   │   ├── products/
 │   │   │   │   ├── page.tsx
 │   │   ├── api/

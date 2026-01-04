@@ -75,7 +75,10 @@ Open http://localhost:3000
 my-app/
 ├── app/
 │   ├── layout.tsx          # Root layout with theme provider
-│   └── page.tsx            # Beautiful landing page
+│   └── page.tsx            # Dashboard Overview landing page
+├── dashboard/
+│   ├── posts/              # Posts management sub-route
+│   └── products/           # Products management sub-route
 ├── components/
 │   ├── ui/                 # ShadCN/ui components (19 installed)
 │   ├── providers/

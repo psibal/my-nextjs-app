@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { ProductsTable } from "@/components/products/products-table";
 import { CreateProductDialog } from "@/components/products/create-product-dialog";
 import { Button } from "@/components/ui/button";
-import { LogOut, LayoutDashboard, Package, Sparkles } from "lucide-react";
+import { LogOut, LayoutDashboard, Package, Sparkles, Files } from "lucide-react";
 
 export default async function ProductsPage() {
     const session = await auth();
@@ -35,10 +35,17 @@ export default async function ProductsPage() {
 
                         <nav className="flex items-center gap-1 text-sm font-medium bg-muted/50 p-1 rounded-xl border border-border/50">
                             <Link
-                                href="/dashboard"
+                                href="/"
                                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-muted-foreground hover:text-foreground transition-all"
                             >
                                 <LayoutDashboard className="h-4 w-4" />
+                                Overview
+                            </Link>
+                            <Link
+                                href="/dashboard/posts"
+                                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-muted-foreground hover:text-foreground transition-all"
+                            >
+                                <Files className="h-4 w-4" />
                                 Posts
                             </Link>
                             <Link

@@ -4,10 +4,11 @@ This document explains the dashboard implementation and how to use it.
 
 ## Overview
 
-The dashboard provides a complete CRUD interface for managing blog posts. It includes:
+The dashboard provides a complete CRUD interface for managing blog posts and products. It includes:
 
-- **Authentication**: Protected routes requiring user login
-- **Posts Management**: Full CRUD operations (Create, Read, Update, Delete)
+- **Dashboard Overview**: A high-impact landing page at `/` with summary metrics and recent activity.
+- **Posts Management**: Organized under `/dashboard/posts`.
+- **Products Management**: Organized under `/dashboard/products`.
 - **Tailwind CSS v4**: Modern, CSS-first configuration and high-performance engine
 - **Premium Design**: OKLCH colors, glassmorphism, and mesh gradients
 - **Data Table**: Advanced table with sorting, filtering, and pagination using TanStack Table
@@ -18,8 +19,14 @@ The dashboard provides a complete CRUD interface for managing blog posts. It inc
 
 ```
 app/
+├── (root)/
+│   └── page.tsx          # Dashboard Overview (Landing Page)
 ├── dashboard/
-│   ├── page.tsx          # Main dashboard page
+│   ├── page.tsx          # Dashboard Overview logic (shared with root)
+│   ├── posts/
+│   │   └── page.tsx      # Posts Management
+│   ├── products/
+│   │   └── page.tsx      # Products Management
 │   ├── loading.tsx       # Loading skeleton
 │   └── error.tsx         # Error boundary
 ├── login/

@@ -65,7 +65,8 @@ Your dashboard can operate in three different modes:
 ALLOW_ANONYMOUS_POSTS="true"
 REQUIRE_AUTH="false"
 ```
-- Anyone can visit dashboard
+- Anyone can visit the Dashboard Overview (/)
+- Anyone can manage content at `/dashboard/posts`
 - Anyone can create/edit/delete posts
 - No sign-in required
 - Perfect for demos
@@ -190,7 +191,8 @@ AUTH_GOOGLE_SECRET="..."
 
 1. Set `ALLOW_ANONYMOUS_POSTS="true"` in `.env.local`
 2. Restart your dev server
-3. Visit `/dashboard` (no login needed)
+3. Visit the Dashboard Overview at `/` (no login needed)
+4. Navigate to `/dashboard/posts` to manage content
 4. Click "New Post"
 5. ✅ Create, edit, and delete posts without signing in!
 

@@ -1,3 +1,20 @@
+# Navigation Restructure: Dashboard-First Experience
+
+## Summary
+The application navigation has been restructured to prioritize the **Dashboard Overview** as the primary landing experience, making it the home page of the application.
+
+### 🚀 Key Improvements
+- **Dashboard as Home**: The root URL (`/`) now serves as a high-impact Dashboard Overview showing key metrics for posts and products.
+- **Improved Content Management**: Moved Posts management from the dashboard root to `/dashboard/posts` for a more organized sub-routing structure.
+- **Shared Overview Logic**: The `app/page.tsx` now leverages the same logic as the dashboard overview for a consistent experience across entry points.
+
+### 🛠️ Technical Implementation
+- **New Sub-routes**: Created `app/dashboard/posts/page.tsx` for post management.
+- **Landing Page Update**: Updated `app/page.tsx` to export the `DashboardOverview` component.
+- **Action Revalidation**: Updated server actions to revalidate both the specific management sub-routes and the root overview page.
+
+---
+
 # Premium Restyle with Tailwind CSS v4
 
 ## Summary

@@ -89,14 +89,18 @@ Add these scripts to `package.json`:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application.
+Open [http://localhost:3000](http://localhost:3000) to see your new **Dashboard Overview**.
+Navigate to `/dashboard/posts` or `/dashboard/products` to manage content.
 
 ## Project Structure
 
 ```
 ├── app/                    # Next.js App Router
 │   ├── layout.tsx         # Root layout with theme provider
-│   └── page.tsx           # Home page
+│   └── page.tsx           # Dashboard Overview (Landing Page)
+├── dashboard/
+│   ├── posts/             # Posts management sub-route
+│   └── products/          # Products management sub-route
 ├── components/
 │   ├── ui/                # ShadCN/ui components
 │   ├── providers/         # React providers (theme, etc.)

@@ -61,7 +61,8 @@ export const createPost = actionClient
       })
       .returning();
 
-    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/posts");
+    revalidatePath("/");
     return { success: true, post };
   });
 
@@ -104,7 +105,8 @@ export const updatePost = actionClient
       .where(eq(posts.id, id))
       .returning();
 
-    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/posts");
+    revalidatePath("/");
     return { success: true, post };
   });
 
@@ -143,7 +145,8 @@ export const deletePost = actionClient
 
     await db.delete(posts).where(eq(posts.id, id));
 
-    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/posts");
+    revalidatePath("/");
     return { success: true };
   });
 

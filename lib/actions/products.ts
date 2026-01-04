@@ -20,6 +20,7 @@ export const createProduct = actionClient
             .returning();
 
         revalidatePath("/dashboard/products");
+        revalidatePath("/");
         return { success: true, product };
     });
 
@@ -39,6 +40,7 @@ export const updateProduct = actionClient
             .returning();
 
         revalidatePath("/dashboard/products");
+        revalidatePath("/");
         return { success: true, product };
     });
 
@@ -51,6 +53,7 @@ export const deleteProduct = actionClient
         await db.delete(products).where(eq(products.id, id));
 
         revalidatePath("/dashboard/products");
+        revalidatePath("/");
         return { success: true };
     });
 

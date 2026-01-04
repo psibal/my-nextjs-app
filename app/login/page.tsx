@@ -14,7 +14,7 @@ export default async function LoginPage() {
   const session = await auth();
 
   if (session?.user) {
-    redirect("/dashboard");
+    redirect("/");
   }
 
   const hasGoogleAuth =
@@ -32,7 +32,7 @@ export default async function LoginPage() {
             <form
               action={async () => {
                 "use server";
-                await signIn("google", { redirectTo: "/dashboard" });
+                await signIn("google", { redirectTo: "/" });
               }}
             >
               <Button type="submit" className="w-full" size="lg">
