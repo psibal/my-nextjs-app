@@ -147,20 +147,34 @@ Navigate to `/dashboard/posts` or `/dashboard/products` to manage content.
 - Example schema with users and posts
 - Migration system
 
-## Development
+## 🚀 Quick Start
 
-### Database Commands
+1. **Install**: `npm install`
+2. **Environment**: `cp .env.local.example .env.local` (Add your `DATABASE_URL`)
+3. **Database**: `npm run db:push` (or `db:migrate`)
+4. **Seed**: `npm run db:seed`
+5. **Run**: `npm run dev`
 
-```bash
-# Generate new migration
-npm run db:generate
+Visit [http://localhost:3000](http://localhost:3000) to see your **Dashboard Overview**.
 
-# Apply migrations
-npm run db:migrate
+---
 
-# Open Drizzle Studio
-npm run db:studio
-```
+## 📖 In-Depth Guides
+
+- [**Technical Documentation (DOCS.md)**](DOCS.md): Detailed guide on Dashboard routing, Anonymous Mode, and Security.
+- [**Project Changelog (CHANGES.md)**](CHANGES.md): History of updates including the Tailwind v4 upgrade.
+
+---
+
+## 🛠️ Essential Commands
+
+- `npm run dev` - Start development server
+- `npm run build` - Create production build
+- `npm run lint` - Run ESLint checks
+- `npm run db:generate` - Generate Drizzle migrations
+- `npm run db:migrate` - Apply migrations
+- `npm run db:seed` - Seed database with test data
+- `npm run db:studio` - Open database GUI
 
 ### Adding ShadCN Components
 

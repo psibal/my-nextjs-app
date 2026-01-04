@@ -1,11 +1,7 @@
 ├── ./
 │   ├── lint_output.txt
 │   ├── format_tree.py
-│   ├── DASHBOARD.md
 │   ├── postcss.config.mjs
-│   ├── SETUP_COMPLETE.md
-│   ├── ANONYMOUS_MODE.md
-│   ├── QUICKSTART.md
 │   ├── next-env.d.ts
 │   ├── PROJECT_STRUCTURE.txt
 │   ├── README.md
@@ -14,6 +10,7 @@
 │   ├── CHANGES.md
 │   ├── components.json
 │   ├── tsconfig.json
+│   ├── DOCS.md
 │   ├── drizzle.config.ts
 │   ├── eslint.config.mjs
 │   ├── next.config.ts
