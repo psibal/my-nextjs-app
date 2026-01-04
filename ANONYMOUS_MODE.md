@@ -4,11 +4,11 @@
 
 The dashboard now supports **Anonymous Posts Mode** - a feature that allows users to create, edit, and delete posts without requiring authentication. This is perfect for:
 
-- 🎨 Demos and prototypes
+- 🎨 Demos and prototypes with a premium, high-end design
 - 🧪 Local development and testing
-- 📝 Simple blogs without user accounts
-- 🎓 Learning projects
-- 🚀 Quick MVPs
+- 📝 Simple blogs with modern aesthetics (glassmorphism/OKLCH)
+- 🎓 Learning projects with the latest tech stack
+- 🚀 Quick MVPs that look professional out of the box
 
 ## How It Works
 

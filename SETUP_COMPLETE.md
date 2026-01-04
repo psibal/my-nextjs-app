@@ -114,11 +114,12 @@ Google OAuth only activates if you set:
 Otherwise, the app works fine without authentication!
 
 ### Modern Design
-- Gradient hero section
-- Feature cards with icons
-- Tech stack showcase
-- Dark/light mode toggle
-- Soft shadows and smooth transitions
+- **Tailwind CSS v4**: Cutting-edge CSS-first configuration
+- **OKLCH Color Space**: Stunningly vibrant and consistent colors
+- **Mesh Gradients**: Professional, dynamic background effects
+- **Glassmorphism**: Translucent headers and components with backdrop filters
+- **Soft Shadows**: Premium "floating" card design and smooth transitions
+- **Dark/Light Mode**: Seamlessly integrated theme switching
 
 ## 🎨 ShadCN Components Installed
 

@@ -8,6 +8,8 @@ The dashboard provides a complete CRUD interface for managing blog posts. It inc
 
 - **Authentication**: Protected routes requiring user login
 - **Posts Management**: Full CRUD operations (Create, Read, Update, Delete)
+- **Tailwind CSS v4**: Modern, CSS-first configuration and high-performance engine
+- **Premium Design**: OKLCH colors, glassmorphism, and mesh gradients
 - **Data Table**: Advanced table with sorting, filtering, and pagination using TanStack Table
 - **Form Validation**: Type-safe forms with react-hook-form and Zod
 - **Server Actions**: Backend mutations without API routes
@@ -42,8 +44,6 @@ lib/
 └── db/
     ├── schema.ts         # Database schema (already existed)
     └── seed.ts           # Seed script for test data
-
-middleware.ts             # Auth middleware for route protection
 ```
 
 ## Getting Started
@@ -197,11 +197,11 @@ All actions include:
 
 ## Security
 
-### Route Protection
+### Page Protection
 
-- [middleware.ts](middleware.ts) protects `/dashboard/*` routes
-- Unauthenticated users are redirected to `/login`
-- All server actions verify user authentication
+- Dashboard routes check for authentication at the page level
+- Unauthenticated users are redirected to `/login` if `REQUIRE_AUTH="true"`
+- All server actions verify user authentication individually
 
 ### Data Validation
 

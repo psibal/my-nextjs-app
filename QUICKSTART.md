@@ -89,11 +89,11 @@ Users can browse without login. Sign in only needed to create/edit posts.
 ## Dashboard Features
 
 **For Everyone (No Login Required):**
-- ✅ **View all posts** in a sortable, filterable table
-- ✅ **See post authors** for each post
-- ✅ **Filter posts** by title using the search box
-- ✅ **Sort posts** by clicking column headers
-- ✅ **Toggle dark/light mode** with the theme button
+- ✅ **Premium UI**: Enjoy a modern design with glassmorphism and OKLCH color vibrance
+- ✅ **View all posts**: Browse content in a sortable, filterable table
+- ✅ **See post authors**: Identify content creators at a glance
+- ✅ **Filter & Sort**: Efficiently manage data with TanStack Table integration
+- ✅ **Toggle dark/light mode**: Switch themes with a sleek toggle
 
 **For Authenticated Users:**
 - ✅ **Create new posts** with title, content, and publish toggle
