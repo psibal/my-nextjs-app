@@ -8,7 +8,7 @@ A production-ready Next.js application built with modern technologies and best p
 - **Next.js 15** - React framework with App Router
 - **React 19** - UI library
 - **TypeScript** - Type safety
-- **TailwindCSS** - Utility-first CSS
+- **Tailwind CSS v4** - Utility-first CSS with CSS-first configuration
 - **ShadCN/ui** - Beautiful UI components
 - **next-themes** - Dark/light mode support
 - **Lucide React** - Icon library
@@ -121,10 +121,11 @@ Open [http://localhost:3000](http://localhost:3000) to see your application.
 - Integrated with next-safe-action
 
 ### ✅ Modern Design
-- Dark/light mode support
-- Soft shadows and modern aesthetics
-- Fully responsive design
-- Accessible components (WCAG AA)
+- **Tailwind CSS v4**: Leveraging the latest CSS-first configuration and high-performance engine.
+- **Vibrant OKLCH Colors**: Perceptually uniform color palette for stunning aesthetics.
+- **Glassmorphism**: Elegant translucent headers and components with `backdrop-blur`.
+- **Premium Aesthetics**: Soft shadows, mesh gradients, and silky-smooth transitions.
+- **Full Responsive & Accessible**: Mobile-first design that meets WCAG AA standards.
 
 ### ✅ Type Safety
 - End-to-end TypeScript
